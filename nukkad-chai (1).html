@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nukkad Chai Co.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=DM+Sans:wght@400;500&family=Kalam:wght@700&display=swap">
+<style>
+:root{
+  --bg:#FFF9EC;
+  --ink:#12353B;
+  --sun:#F7B500;
+  --sun-ink:#12353B;
+  --rose:#E8556D;
+  --line:#12353B33;
+  --card:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D2428;
+    --ink:#FFF3D6;
+    --rose:#FF7A8E;
+    --line:#FFF3D633;
+    --card:#143339}
+  }
+:root[data-theme="dark"]{
+  --bg:#0D2428;
+  --ink:#FFF3D6;
+  --rose:#FF7A8E;
+  --line:#FFF3D633;
+  --card:#143339
+}
+*{
+  box-sizing:border-box;
+  margin:0
+}
+html{
+  scroll-padding-top:70px;
+  scroll-behavior:smooth
+}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:400 17px/1.6 'DM Sans',system-ui,sans-serif;
+  overflow-x:hidden
+}
+h1,h2,h3{
+  font-family:'Rozha One',Georgia,serif;
+  line-height:1.02;
+  letter-spacing:0
+}
+a{
+  color:inherit
+}
+button{
+  font:inherit;
+  cursor:pointer
+}
+:focus-visible{
+  outline:3px solid var(--rose);
+  outline-offset:3px
+}
+#bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0;
+  background:var(--rose);
+  z-index:60
+}
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 5vw;
+  background:var(--bg);
+  transition:box-shadow .3s
+}
+nav.s{
+  box-shadow:0 2px 18px #0002
+}
+nav b{
+  font:400 20px 'Rozha One',serif
+}
+nav a{
+  text-decoration:none;
+  font-weight:500;
+  margin-left:20px
+}
+.hero{
+  background:var(--sun);
+  color:var(--sun-ink);
+  border-radius:0 0 48px 48px;
+  padding:5vw 5vw 9vw;
+  position:relative;
+  overflow:hidden
+}
+.hero-in{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:32px;
+  align-items:center;
+  position:relative;
+  z-index:2
+}
+.hero h1{
+  font-size:clamp(40px,7.6vw,96px);
+  font-weight:400;
+  line-height:1.05
+}
+.hero h1 span{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(60px) rotate(4deg);
+  animation:up .8s cubic-bezier(.2,.9,.3,1.2) forwards
+}
+@keyframes up{
+  to{opacity:1;transform:none}
+}
+.hero p{
+  max-width:30ch;
+  font-size:19px;
+  margin:22px 0 28px;
+  opacity:0;
+  animation:up .8s .9s forwards
+}
+.hero .btn{
+  opacity:0;
+  animation:up .8s 1.1s forwards
+}
+.btn{
+  display:inline-block;
+  background:var(--sun-ink);
+  color:#FFF3D6;
+  padding:14px 26px;
+  border-radius:99px;
+  font-weight:500;
+  text-decoration:none;
+  border:0;
+  transition:transform .2s
+}
+.btn:hover{
+  transform:translateY(-3px) scale(1.04)
+}
+.cw{
+  justify-self:center;
+  width:100%;
+  max-width:520px;
+  transition:transform .25s ease-out
+}
+.cup{
+  width:100%;
+  display:block;
+  animation:bob 4s ease-in-out infinite
+}
+.orb{
+  animation:spin 60s linear infinite;
+  transform-origin:200px 215px
+}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+.fi{
+  animation:flo 5s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center
+}
+@keyframes flo{
+  50%{transform:translateY(-16px) rotate(14deg)}
+}
+.rip{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:rp 2.8s ease-out infinite
+}
+@keyframes rp{
+  0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.1);opacity:0}
+}
+.wisp path{
+  fill:none;
+  stroke:#fff;
+  stroke-width:11;
+  stroke-linecap:round;
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:rs 3.6s ease-in infinite
+}
+.wisp path:nth-child(2){
+  animation-delay:1.2s
+}
+.wisp path:nth-child(3){
+  animation-delay:2.4s
+}
+@keyframes rs{
+  0%{opacity:0;transform:translateY(22px) scaleY(.8)}30%{opacity:.8}100%{opacity:0;transform:translateY(-34px) scaleY(1.15)}
+}
+.tw{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:tw 2.4s ease-in-out infinite
+}
+@keyframes tw{
+  0%,100%{transform:scale(.3);opacity:.2}50%{transform:scale(1);opacity:1}
+}
+@keyframes bob{
+  50%{transform:translateY(-10px) rotate(-2deg)}
+}
+.steam path{
+  fill:none;
+  stroke:var(--sun-ink);
+  stroke-width:5;
+  stroke-linecap:round;
+  opacity:0;
+  animation:rise 3s ease-in infinite
+}
+.steam path:nth-child(2){
+  animation-delay:.9s
+}
+.steam path:nth-child(3){
+  animation-delay:1.8s
+}
+@keyframes rise{
+  0%{opacity:0;transform:translateY(14px)}30%{opacity:.8}100%{opacity:0;transform:translateY(-22px)}
+}
+.fl{
+  position:absolute;
+  border-radius:50%;
+  background:#12353B22;
+  animation:drift 9s ease-in-out infinite
+}
+.fl.p{
+  border-radius:60% 40% 60% 40%;
+  background:#E8556D55
+}
+@keyframes drift{
+  50%{transform:translate(30px,-40px) rotate(90deg)}
+}
+.tick{
+  overflow:hidden;
+  background:var(--ink);
+  color:var(--bg);
+  padding:14px 0;
+  margin-top:-24px;
+  position:relative;
+  z-index:1;
+  transform:rotate(-1.2deg)
+}
+.tick div{
+  display:flex;
+  gap:48px;
+  width:max-content;
+  animation:mq 22s linear infinite;
+  font:400 22px 'Rozha One',serif;
+  padding-top:20px
+}
+@keyframes mq{
+  to{transform:translateX(-50%)}
+}
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 5vw 0
+}
+h2{
+  font-size:clamp(32px,4.6vw,52px);
+  font-weight:400;
+  margin-bottom:28px
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  text-align:center
+}
+.stats div{
+  background:var(--card);
+  border-radius:24px;
+  padding:28px 12px;
+  border:1px solid var(--line)
+}
+.stats b{
+  display:block;
+  font:400 clamp(38px,6vw,60px) 'Rozha One',serif;
+  color:var(--rose)
+}
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:22px;
+  flex-wrap:wrap
+}
+.tabs button{
+  background:none;
+  color:var(--ink);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  padding:8px 22px;
+  font-weight:500;
+  transition:.2s
+}
+.tabs button[aria-selected=true]{
+  background:var(--ink);
+  color:var(--bg)
+}
+#list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:14px
+}
+.it{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px 18px;
+  animation:pop .45s backwards;
+  transition:transform .2s
+}
+.it:hover{
+  transform:translateY(-4px) rotate(-.6deg)
+}
+@keyframes pop{
+  from{opacity:0;transform:scale(.9) translateY(14px)}
+}
+.it .n{flex:1}
+.it small{
+  display:block;
+  opacity:.7;
+  font-size:14px
+}
+.it b{
+  font-weight:500
+}
+.q{
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+.q button{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:2px solid var(--ink);
+  background:none;
+  color:var(--ink);
+  font-size:18px;
+  line-height:1
+}
+.q button:active{
+  transform:scale(.85)
+}
+.q button.add{
+  background:var(--sun);
+  border-color:var(--sun);
+  color:#12353B
+}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px
+}
+.steps div{
+  border-top:4px solid var(--rose);
+  padding-top:14px
+}
+.steps h3{
+  font-size:24px;
+  margin-bottom:6px
+}
+.rev{
+  position:relative;
+  min-height:170px
+}
+.rev blockquote{
+  position:absolute;
+  inset:0;
+  font:400 clamp(22px,3.4vw,34px)/1.25 'Rozha One',serif;
+  opacity:0;
+  transform:translateX(40px);
+  transition:.7s
+}
+.rev blockquote.on{
+  opacity:1;transform:none
+}
+.rev cite{
+  display:block;
+  font:400 16px 'DM Sans';
+  margin-top:12px;
+  opacity:.7
+}
+.info{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:32px
+}
+.info h3{
+  font-size:22px;
+  margin-bottom:6px
+}
+.cta{
+  margin:90px auto 0;
+  max-width:1100px;
+  padding:0 5vw
+}
+.cta div{
+  background:var(--ink);
+  color:var(--bg);
+  border-radius:32px;
+  padding:48px 6vw;
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:space-between;
+  align-items:center
+}
+.cta h2{
+  margin:0;
+  font-size:clamp(30px,4.5vw,48px)
+}
+.cta .btn{
+  background:var(--sun);
+  color:#12353B
+}
+footer{
+  text-align:center;
+  padding:40px 5vw 110px;
+  font-size:14px;
+  opacity:.7
+}
+#cart{
+  position:fixed;
+  left:50%;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  transform:translate(-50%,160%);
+  transition:transform .45s cubic-bezier(.2,.9,.3,1.2);
+  background:var(--rose);
+  color:#fff;
+  border-radius:99px;
+  padding:12px 14px 12px 24px;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  z-index:70;
+  box-shadow:0 8px 30px #0005;
+  white-space:nowrap
+}
+#cart.on{
+  transform:translate(-50%,0)
+}
+#cart a{
+  background:#fff;
+  color:#12353B;
+  border-radius:99px;
+  padding:8px 18px;
+  text-decoration:none;
+  font-weight:500
+}
+.js .rv{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s,transform .8s
+}
+.js .rv.in{
+  opacity:1;
+  transform:none
+}
+@media (max-width:720px){
+  .hero-in{grid-template-columns:1fr}
+  .cw{max-width:260px;order:-1}nav a{margin-left:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{
+    animation:none!important;
+    transition:none!important
+  }
+  .hero h1 span,.hero p,.hero .btn,.js .rv{
+    opacity:1;
+    transform:none
+  }
+  .rev blockquote{
+    position:static;
+    opacity:1;
+    transform:none;
+    margin-bottom:16px
+  }
+  .rev{
+    min-height:0
+  }
+  .tick div{
+    width:auto;
+    flex-wrap:wrap
+  }
+}
+.hand{
+  font:700 26px 'Kalam',cursive;
+  display:inline-block;
+  margin-left:18px;
+  transform:rotate(-4deg);
+  opacity:0;
+  animation:up .8s 1.5s forwards
+}
+.ic{
+  width:80px;
+  height:64px;
+  flex:none;
+  border-radius:16px;
+  background:var(--sun);
+  display:grid;
+  place-items:center
+}
+.ic svg{
+  width:70px;
+  height:56px
+}
+.it:hover .ic svg{
+  animation:wob .6s
+}
+@keyframes wob{25%{transform:rotate(-8deg) scale(1.12)}60%{transform:rotate(7deg) scale(1.12)}}
+.shine{
+  animation:sh 5s ease-in-out infinite
+}
+@keyframes sh{0%,10%{transform:translateX(0);opacity:0}30%{opacity:.6}70%,100%{transform:translateX(270px);opacity:0}}
+.scene{
+  padding-top:70px
+}
+.scene svg{
+  display:block;
+  width:100%;
+  height:clamp(240px,36vw,420px);
+  border-radius:32px
+}
+.bu{
+  animation:fk 2.4s infinite
+}
+@keyframes fk{0%,100%{opacity:1}45%{opacity:.5}52%{opacity:.9}}
+.fl2{
+  transform-box:fill-box;
+  transform-origin:bottom;
+  animation:fl .45s ease-in-out infinite alternate
+}
+@keyframes fl{to{transform:scale(.8,1.5)}}
+.stm path{
+  fill:none;
+  stroke:#fff;
+  stroke-width:5;
+  stroke-linecap:round;
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:rs 3s ease-in infinite
+}
+.stm path:nth-child(2){
+  animation-delay:1s
+}
+.stm path:nth-child(3){
+  animation-delay:2s
+}
+.s2 path{
+  stroke-width:2.5
+}
+.build{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:36px;
+  padding:36px
+}
+.view{
+  background:var(--sun);
+  border-radius:28px;
+  padding:16px;
+  text-align:center
+}
+.view svg{
+  width:100%;
+  max-width:340px;
+  animation:pop .5s
+}
+.chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:8px 0 16px
+}
+.chips button{
+  background:none;
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-radius:99px;
+  padding:6px 16px;
+  font-weight:500;
+  transition:.2s
+}
+.chips button[aria-pressed=true]{
+  background:var(--ink);
+  color:var(--bg);
+  border-color:var(--ink)
+}
+.build label{
+  font-weight:500;
+  display:block
+}
+.lbl{
+  opacity:.8;
+  margin-bottom:6px
+}
+.price{
+  font:400 38px 'Rozha One',serif;
+  margin-bottom:14px
+}
+.build .btn{
+  background:var(--sun);
+  color:#12353B
+}
+.sub{
+  max-width:52ch;
+  opacity:.8;
+  margin:-12px 0 24px
+}
+.steps svg{
+  width:120px;
+  height:90px;
+  display:block;
+  margin-bottom:8px;
+  overflow:visible
+}
+.bub{
+  animation:bb 2s ease-in infinite
+}
+@keyframes bb{
+  0%{transform:translateY(8px) scale(.5);opacity:0}30%{opacity:1}100%{transform:translateY(-14px);opacity:0}
+}
+.drop{
+  animation:dr 2.4s ease-in infinite
+}
+@keyframes dr{
+  0%{transform:translateY(-6px);opacity:0}25%{opacity:1}70%{transform:translateY(32px);opacity:1}100%{transform:translateY(34px);opacity:0}
+}
+.dk{
+  animation:dk 4s ease-in-out infinite alternate
+}
+@keyframes dk{from{fill:#E6D3A2}to{fill:#8A5A2B}}
+.mk{
+  animation:mk 4s ease-in-out infinite alternate
+}
+@keyframes mk{from{fill:#8A5A2B}to{fill:#C98A4B}}
+.pr{
+  stroke-dasharray:5 7;animation:pd .7s linear infinite
+}
+@keyframes pd{to{stroke-dashoffset:-12}}
+@media (max-width:760px){
+  .build{grid-template-columns:1fr;padding:20px}
+  }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="tex" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7" result="t"/>
+        <feDiffuseLighting in="t" lighting-color="#fff" surfaceScale="1.4" diffuseConstant="1.15" result="l">
+          <feDistantLight azimuth="45" elevation="65"/>
+        </feDiffuseLighting>
+          <feComposite in="l" in2="SourceAlpha" operator="in" result="lc"/>
+          <feBlend in="SourceGraphic" in2="lc" mode="multiply"/>
+      </filter>
+      <filter id="gloss" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="b"/>
+        <feSpecularLighting in="b" surfaceScale="7" specularConstant=".9" specularExponent="24" lighting-color="#fff" result="s">
+          <fePointLight x="120" y="40" z="170"/>
+        </feSpecularLighting>
+        <feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/>
+        <feComposite in="SourceGraphic" in2="sc" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+      </filter>
+      <filter id="gloss2" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"/>
+        <feSpecularLighting in="b" surfaceScale="5" specularConstant=".9" specularExponent="20" lighting-color="#fff" result="s">
+          <fePointLight x="-20" y="-30" z="70"/>
+        </feSpecularLighting>
+        <feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/>
+        <feComposite in="SourceGraphic" in2="sc" operator="arithmetic" k1="0" k2="1" k3=".9" k4="0"/>
+      </filter>
+    </defs>
+  </svg>
+<div id="bar"></div>
+<nav id="nv"><b>Nukkad Chai Co.</b>
+  <div><a href="#menu">Menu</a><a href="#mix">Build chai</a><a href="#how">How we brew</a><a href="#visit">Visit</a></div>
+</nav>
+
+<header class="hero">
+ <i class="fl" style="width:90px;height:90px;left:6%;top:18%"></i>
+ <i class="fl p" style="width:50px;height:50px;left:46%;top:70%;animation-delay:-3s"></i>
+ <i class="fl" style="width:40px;height:40px;right:8%;top:12%;animation-delay:-5s"></i>
+ <i class="fl p" style="width:70px;height:70px;right:26%;bottom:8%;animation-delay:-2s"></i>
+ <div class="hero-in">
+  <div>
+   <h1><span style="animation-delay:.1s">Chai,</span> <span style="animation-delay:.25s">ready</span> <span style="animation-delay:.4s">in</span> <span style="animation-delay:.55s">four</span> <span style="animation-delay:.7s">minutes.</span></h1>
+   <p>Slow-boiled with fresh ginger and crushed elaichi, served with bun maska at the corner of your lane.</p>
+   <a class="btn" href="#menu">Build your order</a><span class="hand">kadak, garam, bilkul desi</span>
+  </div>
+  <div class="cw">
+    <svg class="cup" viewBox="0 0 400 400" role="img" aria-label="Steaming cup of masala chai surrounded by spices">
+<defs>
+<radialGradient id="gl" cx="50%" cy="45%" r="55%">
+  <stop offset="0" stop-color="#FFE98F"/>
+  <stop offset="1" stop-color="#F7B500" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="cb" x1="0" x2="1">
+  <stop offset="0" stop-color="#0A2226"/>
+  <stop offset=".35" stop-color="#23707B"/>
+  <stop offset=".6" stop-color="#17454C"/>
+  <stop offset="1" stop-color="#0A2226"/>
+</linearGradient>
+<linearGradient id="sc" x1="0" x2="1">
+  <stop offset="0" stop-color="#E2D6BC"/>
+  <stop offset=".5" stop-color="#FFF8E6"/>
+  <stop offset="1" stop-color="#D2C5A8"/>
+</linearGradient>
+<radialGradient id="tea" cx="40%" cy="40%" r="70%">
+  <stop offset="0" stop-color="#D79A5B"/>
+  <stop offset="1" stop-color="#7A4A22"/>
+</radialGradient>
+<filter id="bl">
+  <feGaussianBlur stdDeviation="3.5"/>
+</filter>
+<clipPath id="cc">
+  <path d="M92 178h216c0 70-30 140-108 146C122 318 92 248 92 178z"/>
+</clipPath>
+</defs>
+<circle cx="200" cy="215" r="188" fill="url(#gl)"/>
+<circle class="orb" cx="200" cy="215" r="174" fill="none" stroke="#12353B" stroke-opacity=".3" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>
+<ellipse cx="200" cy="352" rx="150" ry="16" fill="#12353B" opacity=".3" filter="url(#bl)"/>
+<ellipse cx="200" cy="330" rx="150" ry="30" fill="url(#sc)" filter="url(#gloss)"/>
+<ellipse cx="200" cy="325" rx="106" ry="18" fill="#12353B" opacity=".15"/>
+<ellipse cx="200" cy="323" rx="100" ry="16" fill="url(#sc)"/>
+<path d="M296 205c56-6 62 76-4 80" fill="none" stroke="#0A2226" stroke-width="20" stroke-linecap="round" filter="url(#gloss)"/>
+<path d="M298 200c50-4 56 70-2 74" fill="none" stroke="#2A7480" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+<path d="M92 178h216c0 70-30 140-108 146C122 318 92 248 92 178z" fill="url(#cb)" filter="url(#gloss)"/>
+<g clip-path="url(#cc)">
+  <path class="shine" d="M60 172h30l-26 156h-30z" fill="#fff" opacity=".4"/>
+</g>
+<path d="M100 214h200M105 232h190" stroke="#F7B500" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M112 196c2 50 18 90 44 112" stroke="#fff" stroke-opacity=".3" stroke-width="9" fill="none" stroke-linecap="round"/>
+<ellipse cx="200" cy="178" rx="108" ry="24" fill="#FFF8E6"/>
+<ellipse cx="200" cy="180" rx="97" ry="19" fill="url(#tea)" filter="url(#gloss)"/>
+<ellipse class="rip" cx="200" cy="181" rx="80" ry="14" fill="none" stroke="#F3C48B" stroke-width="3"/>
+<ellipse class="rip" style="animation-delay:-1.4s" cx="200" cy="181" rx="80" ry="14" fill="none" stroke="#F3C48B" stroke-width="3"/>
+<ellipse cx="168" cy="176" rx="30" ry="5" fill="#fff" opacity=".25"/>
+<g class="wisp" filter="url(#bl)">
+  <path d="M165 150c-26-26 26-46 0-78"/>
+  <path d="M200 146c-26-26 26-46 0-78"/>
+  <path d="M236 150c-26-26 26-46 0-78"/>
+</g>
+<g class="fi" style="animation-delay:-1s">
+  <g transform="translate(62 118) rotate(-35)" filter="url(#tex)">
+    <rect x="-38" y="-8" width="76" height="16" rx="8" fill="#9C5A2B"/>
+    <path d="M-30-2h60M-26 3h52" stroke="#6B3A18" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="38" cy="0" rx="4" ry="8" fill="#6B3A18"/>
+  </g>
+</g>
+<g class="fi" style="animation-delay:-2.5s">
+  <g transform="translate(340 112) rotate(25)" filter="url(#gloss2)">
+    <ellipse rx="22" ry="12" fill="#8DB663"/>
+    <path d="M-20 0Q0-6 20 0M-20 0Q0 6 20 0M-12-8Q0 0-12 8M12-8Q0 0 12 8" fill="none" stroke="#5E8A3A" stroke-width="2"/>
+  </g>
+</g>
+<g class="fi" style="animation-delay:-4s">
+  <g transform="translate(348 262)" fill="#7A3E1D" filter="url(#tex)">
+    <ellipse rx="6" ry="20"/>
+    <ellipse rx="6" ry="20" transform="rotate(45)"/>
+    <ellipse rx="6" ry="20" transform="rotate(90)"/>
+    <ellipse rx="6" ry="20" transform="rotate(135)"/>
+    <circle r="6" fill="#4A2410"/></g></g>
+<g class="fi" style="animation-delay:-3s">
+  <path transform="translate(52 272)" d="M-26 4c-6-14 10-22 18-12 8-14 26-6 22 8 12 0 14 18 0 20-10 10-26 8-30-2-6 2-12-6-10-14z" fill="#D9A566" filter="url(#tex)"/><path transform="translate(52 272)" d="M-14 6c6 2 12 2 18 0" stroke="#A9743A" stroke-width="2" fill="none"/>
+</g>
+<g class="fi" style="animation-delay:-1.8s">
+  <path transform="translate(292 48) rotate(40)" d="M0 0c18-6 30 6 30 22-18 4-30-6-30-22z" fill="#5E9B45" filter="url(#gloss2)"/>
+  <path transform="translate(120 40) rotate(-30)" d="M0 0c18-6 30 6 30 22-18 4-30-6-30-22z" fill="#78B85A" filter="url(#gloss2)"/>
+</g>
+<g transform="translate(250 40)">
+  <path class="tw" d="M0-10l2.5 7.5L10 0l-7.5 2.5L0 10l-2.5-7.5L-10 0l7.5-2.5z" fill="#fff"/>
+</g>
+<g transform="translate(90 205)">
+  <path class="tw" style="animation-delay:-1.2s" d="M0-8l2 6L8 0l-6 2L0 8l-2-6L-8 0l6-2z" fill="#fff"/>
+</g>
+</svg></div>
+ </div>
+</header>
+
+<div class="tick" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="scene rv" aria-label="Nukkad chai stall at dusk">
+  <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a chai stall at dusk with hanging lights">
+<defs>
+  <linearGradient id="sk" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0D2428"/>
+    <stop offset=".55" stop-color="#3A2F57"/>
+    <stop offset="1" stop-color="#E8803A"/>
+  </linearGradient>
+<radialGradient id="gw">
+  <stop offset="0" stop-color="#FFC15A" stop-opacity=".9"/>
+  <stop offset="1" stop-color="#FFC15A" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="st" x1="0" x2="1">
+  <stop offset="0" stop-color="#7C8A8F"/>
+  <stop offset=".4" stop-color="#E4ECEE"/>
+  <stop offset="1" stop-color="#6A777C"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="420" fill="url(#sk)"/>
+<circle class="tw" style="animation-delay:-0.0s" cx="17" cy="21" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-0.4s" cx="70" cy="58" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-0.7s" cx="123" cy="95" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-1.1s" cx="176" cy="132" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-1.5s" cx="229" cy="39" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-1.9s" cx="282" cy="76" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-2.2s" cx="335" cy="113" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-2.6s" cx="388" cy="20" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-3.0s" cx="441" cy="57" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-3.3s" cx="494" cy="94" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-3.7s" cx="547" cy="131" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-4.1s" cx="600" cy="38" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-4.4s" cx="653" cy="75" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-4.8s" cx="706" cy="112" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-5.2s" cx="759" cy="19" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-5.5s" cx="812" cy="56" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-5.9s" cx="865" cy="93" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-6.3s" cx="918" cy="130" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-6.7s" cx="971" cy="37" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-7.0s" cx="1024" cy="74" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-7.4s" cx="1077" cy="111" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-7.8s" cx="1130" cy="18" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-8.1s" cx="1183" cy="55" r="1.7" fill="#fff"/>
+<circle class="tw" style="animation-delay:-8.5s" cx="36" cy="92" r="1.7" fill="#fff"/>
+<circle cx="1060" cy="80" r="50" fill="#FFF3D6" opacity=".12"/>
+<circle cx="1060" cy="80" r="30" fill="#FFF3D6"/>
+<rect x="0" y="250" width="80" height="120" fill="#14212A" opacity=".9"/>
+<rect x="85" y="275" width="60" height="95" fill="#14212A" opacity=".9"/>
+<rect x="150" y="235" width="90" height="135" fill="#14212A" opacity=".9"/>
+<rect x="245" y="270" width="70" height="100" fill="#14212A" opacity=".9"/>
+<rect x="890" y="240" width="80" height="130" fill="#14212A" opacity=".9"/>
+<rect x="975" y="270" width="60" height="100" fill="#14212A" opacity=".9"/>
+<rect x="1040" y="225" width="90" height="145" fill="#14212A" opacity=".9"/>
+<rect x="1135" y="260" width="65" height="110" fill="#14212A" opacity=".9"/>
+<rect x="14" y="266" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="34" y="266" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="54" y="266" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="14" y="292" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="34" y="292" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="164" y="251" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="184" y="251" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="204" y="251" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="164" y="277" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="184" y="277" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="904" y="256" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="924" y="256" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="944" y="256" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="904" y="282" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="924" y="282" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="1054" y="241" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="1074" y="241" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="1094" y="241" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="1054" y="267" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect x="1074" y="267" width="8" height="10" fill="#FFD36B" opacity=".8"/>
+<rect y="370" width="1200" height="50" fill="#141822"/>
+<rect x="362" y="190" width="476" height="190" fill="#2A1B14"/>
+<rect x="380" y="205" width="22" height="22" rx="4" fill="#8DB663"/>
+<rect x="414" y="205" width="22" height="22" rx="4" fill="#D9A566"/>
+<rect x="448" y="205" width="22" height="22" rx="4" fill="#E8553A"/>
+<rect x="482" y="205" width="22" height="22" rx="4" fill="#F7B500"/>
+<rect x="516" y="205" width="22" height="22" rx="4" fill="#8A5A2B"/>
+<rect x="550" y="205" width="22" height="22" rx="4" fill="#5E9B45"/>
+<rect x="584" y="205" width="22" height="22" rx="4" fill="#FFF3D6"/>
+<rect x="372" y="228" width="300" height="6" fill="#C98A4B"/>
+<ellipse cx="600" cy="240" rx="300" ry="100" fill="url(#gw)" opacity=".55"/>
+<rect x="352" y="190" width="10" height="190" fill="#5A3A22"/>
+<rect x="838" y="190" width="10" height="190" fill="#5A3A22"/>
+<path d="M320 132L350 108H850L880 132z" fill="#C73E27"/>
+<rect x="340" y="130" width="52" height="62" fill="#E8553A"/>
+<circle cx="366" cy="192" r="26" fill="#E8553A"/>
+<rect x="392" y="130" width="52" height="62" fill="#FFF3D6"/>
+<circle cx="418" cy="192" r="26" fill="#FFF3D6"/>
+<rect x="444" y="130" width="52" height="62" fill="#E8553A"/>
+<circle cx="470" cy="192" r="26" fill="#E8553A"/>
+<rect x="496" y="130" width="52" height="62" fill="#FFF3D6"/>
+<circle cx="522" cy="192" r="26" fill="#FFF3D6"/>
+<rect x="548" y="130" width="52" height="62" fill="#E8553A"/>
+<circle cx="574" cy="192" r="26" fill="#E8553A"/>
+<rect x="600" y="130" width="52" height="62" fill="#FFF3D6"/>
+<circle cx="626" cy="192" r="26" fill="#FFF3D6"/>
+<rect x="652" y="130" width="52" height="62" fill="#E8553A"/>
+<circle cx="678" cy="192" r="26" fill="#E8553A"/>
+<rect x="704" y="130" width="52" height="62" fill="#FFF3D6"/>
+<circle cx="730" cy="192" r="26" fill="#FFF3D6"/>
+<rect x="756" y="130" width="52" height="62" fill="#E8553A"/>
+<circle cx="782" cy="192" r="26" fill="#E8553A"/>
+<rect x="808" y="130" width="52" height="62" fill="#FFF3D6"/>
+<circle cx="834" cy="192" r="26" fill="#FFF3D6"/>
+<rect x="372" y="262" width="456" height="118" fill="#8B4A2B"/>
+<path d="M450 262v118M600 262v118M750 262v118" stroke="#6B3A1E" stroke-width="3"/>
+<rect x="366" y="254" width="468" height="12" fill="#C98A4B"/>
+<g transform="translate(470 254)"><rect x="-46" y="-4" width="92" height="8" fill="#222"/>
+  <g fill="#6EC8FF">
+    <ellipse class="fl2" cx="-40" cy="-8" rx="4" ry="6"/>
+    <ellipse class="fl2" style="animation-delay:-.2s" cx="-24" cy="-8" rx="4" ry="6"/>
+    <ellipse class="fl2" style="animation-delay:-.3s" cx="24" cy="-8" rx="4" ry="6"/>
+    <ellipse class="fl2" style="animation-delay:-.1s" cx="40" cy="-8" rx="4" ry="6"/>
+  </g>
+<g filter="url(#gloss2)">
+  <path d="M-34-4C-42-44-22-66 0-66C22-66 42-44 34-4z" fill="url(#st)"/>
+  <path d="M30-38L66-60L70-54L38-24z" fill="url(#st)"/>
+  <ellipse cy="-67" rx="14" ry="5" fill="url(#st)"/>
+  <circle cy="-74" r="4" fill="#3A3A3A"/>
+</g>
+<path d="M-36-38C-74-48-74-4-36-12" fill="none" stroke="#3A3A3A" stroke-width="6"/>
+<g class="stm s2" transform="translate(70 -60)">
+  <path d="M0 0c-8-10 8-16 0-28"/>
+  <path d="M6 2c-8-10 8-16 0-28"/>
+</g>
+</g>
+<g transform="translate(600 254)">
+  <path d="M-11-34h22l-3 34h-16z" fill="#FFF8E6" fill-opacity=".5" stroke="#FFF3D6" stroke-opacity=".6"/>
+  <path d="M-9.5-24h19l-2.4 24h-14.2z" fill="#C98A4B"/>
+  <g class="stm s2">
+    <path d="M-3-38c-4-4 4-6 0-12"/>
+    <path d="M4-38c-4-4 4-6 0-12"/>
+  </g>
+</g>
+<g transform="translate(640 254)">
+  <path d="M-11-34h22l-3 34h-16z" fill="#FFF8E6" fill-opacity=".5" stroke="#FFF3D6" stroke-opacity=".6"/>
+  <path d="M-9.5-24h19l-2.4 24h-14.2z" fill="#C98A4B"/>
+  <g class="stm s2">
+    <path d="M-3-38c-4-4 4-6 0-12"/>
+    <path d="M4-38c-4-4 4-6 0-12"/>
+  </g>
+</g>
+<g transform="translate(680 254)">
+  <path d="M-11-34h22l-3 34h-16z" fill="#FFF8E6" fill-opacity=".5" stroke="#FFF3D6" stroke-opacity=".6"/>
+  <path d="M-9.5-24h19l-2.4 24h-14.2z" fill="#C98A4B"/>
+  <g class="stm s2">
+    <path d="M-3-38c-4-4 4-6 0-12"/>
+    <path d="M4-38c-4-4 4-6 0-12"/>
+  </g>
+</g>
+<ellipse cx="770" cy="252" rx="40" ry="7" fill="#FFF8E6"/>
+<ellipse cx="757" cy="240" rx="18" ry="12" fill="#E3A857"/>
+<ellipse cx="784" cy="241" rx="18" ry="12" fill="#EDB868"/>
+<rect x="750" y="232" width="14" height="6" rx="2" fill="#FFE27A"/>
+<rect x="560" y="292" width="170" height="72" rx="6" fill="#1E2B2E" stroke="#C98A4B" stroke-width="4"/>
+<text x="645" y="328" text-anchor="middle" font-size="32" fill="#FFF3D6" font-family="Rozha One,serif">CHAI ₹20</text>
+<text x="645" y="352" text-anchor="middle" font-size="16" fill="#F7B500" font-family="Kalam,cursive" font-weight="700">cutting • masala • kadak</text>
+<path d="M0 60Q150 130 300 60Q450 130 600 60Q750 130 900 60Q1050 130 1200 60" fill="none" stroke="#0B1418" stroke-width="2.5"/>
+<g class="bu" style="animation-delay:-0.4s">
+  <circle cx="75" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="75" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-0.8s">
+  <circle cx="150" cy="95" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="150" cy="95" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-1.2s">
+  <circle cx="225" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="225" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-1.6s">
+  <circle cx="375" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="375" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-2.0s">
+  <circle cx="450" cy="95" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="450" cy="95" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-2.4s">
+  <circle cx="525" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="525" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-2.8s">
+  <circle cx="675" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="675" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-3.2s">
+  <circle cx="750" cy="95" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="750" cy="95" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-3.6s">
+  <circle cx="825" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="825" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-4.0s">
+  <circle cx="975" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="975" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-4.4s">
+  <circle cx="1050" cy="95" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="1050" cy="95" r="6" fill="#FFE27A"/>
+</g>
+<g class="bu" style="animation-delay:-4.8s">
+  <circle cx="1125" cy="86" r="22" fill="url(#gw)" opacity=".5"/>
+  <circle cx="1125" cy="86" r="6" fill="#FFE27A"/>
+</g>
+<circle cx="250" cy="266" r="14" fill="#0B1418"/>
+<path d="M222 372c0-46 12-84 28-84s28 38 28 84z" fill="#0B1418"/>
+<rect x="120" y="196" width="190" height="44" rx="14" fill="#FFF3D6"/>
+<path d="M230 240l8 18l12-18z" fill="#FFF3D6"/>
+<text x="215" y="225" text-anchor="middle" font-size="20" fill="#12353B" font-family="Kalam,cursive" font-weight="700">Bhaiya, ek cutting!</text>
+</svg>
+</section>
+<section class="rv"><div class="stats">
+ <div><b data-n="1200">0</b>cups every day</div>
+ <div><b data-n="4">0</b>minutes per chai</div>
+ <div><b data-n="16">0</b>hours open daily</div>
+</div></section>
+
+<section id="menu" class="rv">
+ <h2>Tap + to build your order</h2>
+ <div class="tabs" role="tablist" id="tabs"></div>
+ <div id="list"></div>
+</section>
+
+<section id="mix" class="rv"><h2>Apni chai khud banao</h2><p class="sub">Patti, cheeni aur masala chuno. Cup mein live dikhega.</p>
+<div class="build"><div class="view" id="view"></div><div>
+<label>Strength</label><div class="chips" id="c1"></div><label>Cheeni</label><div class="chips" id="c2"></div><label>Masala</label><div class="chips" id="c3"></div><label>Size</label><div class="chips" id="c4"></div>
+<p class="lbl" id="lbl"></p><div class="price" id="pr"></div><a class="btn" id="wa2" href="#" target="_blank" rel="noopener">Order this chai on WhatsApp</a></div></div></section>
+
+<section id="how" class="rv">
+ <h2>How we brew</h2>
+ <div class="steps">
+  <div><svg viewBox="0 0 120 90" aria-hidden="true"><path d="M20 40h80v24q0 18-40 18t-40-18z" fill="#1F5C65"/><path d="M12 46h8M100 46h8" stroke="#1F5C65" stroke-width="5" stroke-linecap="round"/><ellipse cx="60" cy="40" rx="40" ry="8" fill="#FFF8E6"/><ellipse  cx="60" cy="41" rx="34" ry="6" fill="#BFE3EA"/><circle class="bub" cx="48" cy="40" r="3" fill="#fff"/><circle class="bub" style="animation-delay:-.7s" cx="64" cy="42" r="2.5" fill="#fff"/><circle class="bub" style="animation-delay:-1.3s" cx="74" cy="39" r="3.5" fill="#fff"/></svg><h3>1. Boil the water</h3><p>Fresh pani, rolling boil, no shortcuts.</p></div>
+  <div><svg viewBox="0 0 120 90" aria-hidden="true"><path d="M20 40h80v24q0 18-40 18t-40-18z" fill="#1F5C65"/><path d="M12 46h8M100 46h8" stroke="#1F5C65" stroke-width="5" stroke-linecap="round"/><ellipse cx="60" cy="40" rx="40" ry="8" fill="#FFF8E6"/><ellipse  cx="60" cy="41" rx="34" ry="6" fill="#BFE3EA"/><path class="drop" d="M44 6c-4-5 4-8 8-4 4-2 8 2 5 6-3 4-10 4-13-2z" fill="#D9A566"/><ellipse class="drop" style="animation-delay:-1.2s" cx="72" cy="8" rx="8" ry="4.5" fill="#8DB663"/></svg><h3>2. Crush the spice</h3><p>Adrak and elaichi go in whole, crushed on the spot.</p></div>
+  <div><svg viewBox="0 0 120 90" aria-hidden="true"><path d="M20 40h80v24q0 18-40 18t-40-18z" fill="#1F5C65"/><path d="M12 46h8M100 46h8" stroke="#1F5C65" stroke-width="5" stroke-linecap="round"/><ellipse cx="60" cy="40" rx="40" ry="8" fill="#FFF8E6"/><ellipse class="dk" cx="60" cy="41" rx="34" ry="6" fill="#E6D3A2"/><path class="drop" d="M50 4c8-3 12 3 12 9-8 2-12-3-12-9z" fill="#5E9B45"/><path class="drop" style="animation-delay:-1.2s" d="M66 2c8-3 12 3 12 9-8 2-12-3-12-9z" fill="#78B85A"/></svg><h3>3. Add the patti</h3><p>Strong tea leaves simmer until the colour turns deep.</p></div>
+  <div><svg viewBox="0 0 120 90" aria-hidden="true"><path d="M20 40h80v24q0 18-40 18t-40-18z" fill="#1F5C65"/><path d="M12 46h8M100 46h8" stroke="#1F5C65" stroke-width="5" stroke-linecap="round"/><ellipse cx="60" cy="40" rx="40" ry="8" fill="#FFF8E6"/><ellipse class="mk" cx="60" cy="41" rx="34" ry="6" fill="#8A5A2B"/><path d="M78 0h22l-3 20q-.5 3-3 3H84q-2.5 0-3-3z" fill="#FFF8E6" stroke="#12353B" stroke-opacity=".3"/><path d="M82 22C76 28 68 30 66 39" fill="none" stroke="#12353B" stroke-opacity=".15" stroke-width="6" stroke-linecap="round"/><path class="pr" d="M82 22C76 28 68 30 66 39" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg><h3>4. Pour the milk</h3><p>Full-cream milk, one more boil, then strained into your glass.</p></div>
+ </div>
+</section>
+
+<section class="rv">
+ <h2>What regulars say</h2>
+ <div class="rev" id="rev">
+  <blockquote class="on">Best adrak chai on the whole road. I come every morning before work.<cite>Rohan, regular since 2023</cite></blockquote>
+  <blockquote>Bun maska here is soft, buttery, and gone in two minutes.<cite>Neha, college student</cite></blockquote>
+  <blockquote>Order on WhatsApp, pick up hot. Zero waiting.<cite>Imran, office nearby</cite></blockquote>
+ </div>
+</section>
+
+<section id="visit" class="rv">
+ <h2>Come by</h2>
+ <div class="info">
+  <div><h3>Hours</h3><p>Every day, 7 am to 11 pm.<br>Chai is hottest at 7 am and 5 pm.</p></div>
+  <div><h3>Address</h3><p>Shop 4, Station Road, Virar<br>Your City 401302</p></div>
+  <div><h3>Call or WhatsApp</h3><p>+91 8830050166</p></div>
+ </div>
+</section>
+
+<div class="cta rv">
+  <div>
+    <h2>Hungry already? Order ahead, skip the queue.</h2><a class="btn" href="#menu">Start your order</a>
+  </div>
+</div>
+<footer>© 2026 Nukkad Chai Co.</footer>
+
+<div id="cart"><span id="ct"></span><a id="wa" href="#" target="_blank" rel="noopener">Order on WhatsApp</a></div>
+
+<script>
+document.documentElement.classList.add('js');
+var M={Chai:[["Masala chai","Elaichi, saunf, black pepper",30],["Kadak adrak chai","Extra ginger, extra strong",35],["Cutting chai","Half glass, full mood",20]],
+Bites:[["Vada pav","",25],["Bun maska","Soft pav, thick butter",40],["Veg grilled sandwich","",80]],
+Cold:[["Cold coffee","",90],["Nimbu soda","Sweet or salted",50]]};
+var cart={},tab="Chai",PH="8830050166";
+function ico(n){
+  var t=n.toLowerCase(),b,sh='<ellipse cx="50" cy="70" rx="34" ry="5" fill="#12353B" opacity=".18"/>',gl='<path d="M32 22h36l-4 48H36z" fill="#fff" fill-opacity=".45" stroke="#12353B" stroke-opacity=".5" stroke-width="2"/>';
+if(/cutting/.test(t))b=sh+'<path d="M34 26h32l-4 40q-.5 4-4 4H42q-3.5 0-4-4z" fill="#FFF8E6" fill-opacity=".55" stroke="#12353B" stroke-opacity=".5" stroke-width="2"/><path d="M36 38h28l-2.8 28q-.5 4-4 4H42.8q-3.5 0-4-4z" fill="#C98A4B"/><ellipse cx="50" cy="38" rx="14" ry="3" fill="#E6B173"/><path d="M45 22c-4-4 4-6 0-12M55 22c-4-4 4-6 0-12" stroke="#12353B" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/>';
+else if(/vada/.test(t))b=sh+'<path d="M12 54c0-18 16-26 38-26s38 8 38 26c0 6-10 8-38 8S12 60 12 54z" fill="#E3A857"/><circle cx="50" cy="42" r="19" fill="#E8903A"/><circle cx="43" cy="36" r="3" fill="#F6B66E"/><circle cx="57" cy="46" r="3" fill="#F6B66E"/><path d="M12 54c0 6 10 8 38 8s38-2 38-8c-10 3-26 4-38 4s-28-1-38-4z" fill="#C98A3A"/><path d="M66 30q14-8 20 4q-10 2-20-4z" fill="#5E9B45"/>';
+else if(/bun/.test(t))b=sh+'<path d="M14 54c0-22 16-30 36-30s36 8 36 30c0 6-8 8-36 8s-36-2-36-8z" fill="#E3A857"/><path d="M14 52c10 4 24 5 36 5s26-1 36-5" stroke="#FFF3D6" stroke-width="4" fill="none"/><rect x="34" y="34" width="32" height="12" rx="3" fill="#FFE27A" transform="rotate(-6 50 40)"/><rect x="34" y="34" width="32" height="4" rx="2" fill="#fff" opacity=".5" transform="rotate(-6 50 40)"/>';
+else if(/sandwich/.test(t))b=sh+'<path d="M14 58L50 14l36 44z" fill="#E3A857"/><path d="M22 58L50 26l28 32z" fill="#5E9B45"/><path d="M30 58L50 36l20 22z" fill="#E8553A"/><path d="M14 58h72v8H14z" fill="#C98A3A"/><path d="M26 66l6-6M42 66l6-6M58 66l6-6" stroke="#8A5A22" stroke-width="2"/>';
+else if(/coffee/.test(t))b=sh+gl+'<path d="M34 34h32l-3 36H37z" fill="#6B3A22"/><path d="M34 22q16-12 32 0z" fill="#fff"/><path d="M58 10l-6 30" stroke="#E8553A" stroke-width="4" stroke-linecap="round"/><path d="M36 46h28" stroke="#9A5E2C" stroke-width="3"/>';
+else if(/nimbu/.test(t))b=sh+gl+'<path d="M34 30h32l-3 40H37z" fill="#E6F28A"/><g fill="#fff" opacity=".8"><circle cx="44" cy="48" r="2.5"/><circle cx="56" cy="40" r="2"/><circle cx="50" cy="58" r="3"/></g><circle cx="68" cy="26" r="11" fill="#F4D03F"/><circle cx="68" cy="26" r="8" fill="#F9E37A"/><path d="M68 18v16M60 26h16M62 20l12 12M74 20L62 32" stroke="#F4D03F" stroke-width="1.5"/>';
+else b=sh+'<path d="M26 34h42c0 22-8 32-21 32s-21-10-21-32z" fill="#1F5C65"/><path d="M68 40c12-2 12 14 0 14" fill="none" stroke="#1F5C65" stroke-width="5"/><ellipse cx="47" cy="34" rx="21" ry="5" fill="#FFF8E6"/><ellipse cx="47" cy="35" rx="18" ry="3.5" fill="'+(/kadak/.test(t)?'#9A5E2C':'#D79A5B')+'"/><path d="M40 28c-5-5 5-8 0-14M52 28c-5-5 5-8 0-14" stroke="#12353B" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/>';
+return '<svg viewBox="0 0 100 80" aria-hidden="true">'+b+'</svg>'}
+
+function tabs(){
+  var t=document.getElementById('tabs');
+  t.innerHTML='';
+  Object.keys(M).forEach(function(k){
+    var b=document.createElement('button');
+    b.textContent=k;b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',k==tab);
+    b.onclick=function(){tab=k;
+      tabs();
+      list()
+    };
+      t.appendChild(b)
+    })
+  }
+function list(){
+  var l=document.getElementById('list');
+  l.innerHTML='';
+  M[tab].forEach(function(x,i){
+    var d=document.createElement('div');
+  d.className='it';
+  d.style.animationDelay=i*70+'ms';
+ var q=cart[x[0]]||0;d.innerHTML='<div class="ic">'+ico(x[0])+'</div><div class="n">'+x[0]+(x[1]?'<small>'+x[1]+'</small>':'')+'</div><b>₹'+x[2]+'</b><div class="q">'+(q?'<button aria-label="Remove one">−</button><span>'+q+'</span>':'')+'<button class="add" aria-label="Add one">+</button></div>';
+ var bs=d.querySelectorAll('button');if(q)bs[0].onclick=function(){chg(x,-1)};bs[bs.length-1].onclick=function(){chg(x,1)};l.appendChild(d)})}
+function chg(x,n){cart[x[0]]=Math.max(0,(cart[x[0]]||0)+n);list();upd()}
+function upd(){var c=0,t=0,msg=[];Object.keys(M).forEach(function(k){M[k].forEach(function(x){var q=cart[x[0]]||0;c+=q;t+=q*x[2];if(q)msg.push(q+" x "+x[0])})});
+ var el=document.getElementById('cart');el.classList.toggle('on',c>0);document.getElementById('ct').textContent=c+(c==1?' item · ₹':' items · ₹')+t;
+ document.getElementById('wa').href='https://wa.me/'+PH+'?text='+encodeURIComponent('Hi! I would like to order: '+msg.join(', ')+'. Total ₹'+t)}
+tabs();list();
+var all=[].concat(M.Chai,M.Bites,M.Cold).map(function(x){return x[0]}).join(' • ');document.getElementById('mq').innerHTML='<span>'+all+' • </span><span>'+all+' • </span>';
+var $2=function(i){return document.getElementById(i)};
+var ST=[['Halki','#D9A86C'],['Normal','#B47A3E'],['Kadak','#7A4A22']],SU=['Phiki','Kam','Normal','Zyada'],SZ=[['Cutting',20],['Regular',30],['Full',45]],MS=['Adrak','Elaichi','Tulsi'],bs={st:1,su:2,sz:1,ms:[1,1,0]};
+function chp(id,arr,on,fn){var c=$2(id);c.innerHTML='';arr.forEach(function(a,i){var b=document.createElement('button');b.textContent=typeof a=='string'?a:a[0];b.setAttribute('aria-pressed',on(i));b.onclick=function(){fn(i);mix()};c.appendChild(b)})}
+function mix(){
+chp('c1',ST,function(i){return bs.st==i},function(i){bs.st=i});chp('c2',SU,function(i){return bs.su==i},function(i){bs.su=i});chp('c3',MS,function(i){return !!bs.ms[i]},function(i){bs.ms[i]=bs.ms[i]?0:1});chp('c4',SZ,function(i){return bs.sz==i},function(i){bs.sz=i});
+var sc=[.82,1,1.18][bs.sz],g='<ellipse cx="150" cy="266" rx="120" ry="12" fill="#12353B" opacity=".25"/><g transform="translate(150 258) scale('+sc+') translate(-150 -258)"><ellipse cx="150" cy="246" rx="112" ry="20" fill="#FFF8E6" filter="url(#gloss)"/><path d="M228 170c40-4 42 52-4 56" fill="none" stroke="#1F5C65" stroke-width="14" stroke-linecap="round"/><path d="M70 150h160c0 52-22 94-80 98-58-4-80-46-80-98z" fill="#1F5C65" filter="url(#gloss)"/><path d="M82 170c2 30 12 50 30 64" stroke="#fff" stroke-opacity=".3" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="150" cy="150" rx="82" ry="17" fill="#FFF8E6"/><ellipse cx="150" cy="152" rx="73" ry="13" fill="'+ST[bs.st][1]+'" filter="url(#gloss)"/><g class="stm"><path d="M126 126c-18-18 18-32 0-54"/><path d="M150 124c-18-18 18-32 0-54"/><path d="M174 126c-18-18 18-32 0-54"/></g></g>';
+for(var i=0;i<bs.su;i++)g+='<rect x="'+(24+i*22)+'" y="'+(244-(i%2)*2)+'" width="18" height="18" rx="3" fill="#fff" stroke="#12353B" stroke-opacity=".25" transform="rotate('+(i*7-6)+' '+(33+i*22)+' 253)"/>';
+if(bs.ms[0])g+='<g class="fi"><path transform="translate(48 96) scale(.8)" d="M-26 4c-6-14 10-22 18-12 8-14 26-6 22 8 12 0 14 18 0 20-10 10-26 8-30-2-6 2-12-6-10-14z" fill="#D9A566" filter="url(#tex)"/></g>';
+if(bs.ms[1])g+='<g class="fi" style="animation-delay:-2s"><g transform="translate(256 92) rotate(25)"><ellipse rx="20" ry="11" fill="#8DB663"/><path d="M-18 0Q0-6 18 0M-18 0Q0 6 18 0" fill="none" stroke="#5E8A3A" stroke-width="2"/></g></g>';
+if(bs.ms[2])g+='<g class="fi" style="animation-delay:-3s"><path transform="translate(140 14) rotate(20)" d="M0 0c18-6 30 6 30 22-18 4-30-6-30-22zM-6 10c-14-8-26 2-24 16 14 2 24-4 24-16z" fill="#5E9B45" filter="url(#gloss2)"/></g>';
+$2('view').innerHTML='<svg viewBox="0 0 300 280" role="img" aria-label="Preview of your chai">'+g+'</svg>';
+var n=bs.ms[0]+bs.ms[1]+bs.ms[2],p=SZ[bs.sz][1]+5*n,l=MS.filter(function(m,i){return bs.ms[i]});
+$2('lbl').textContent=ST[bs.st][0]+' patti, '+SU[bs.su].toLowerCase()+' cheeni, '+(l.length?l.join(' + ')+' masala':'bina masala')+', '+SZ[bs.sz][0].toLowerCase()+' size';
+$2('pr').textContent='₹'+p;
+$2('wa2').href='https://wa.me/'+PH+'?text='+encodeURIComponent('Hi! Ek '+SZ[bs.sz][0]+' chai: '+ST[bs.st][0]+' patti, '+SU[bs.su]+' cheeni, '+(l.length?l.join(' + '):'no masala')+'. Total ₹'+p)}
+mix();
+var bar=document.getElementById('bar'),nv=document.getElementById('nv');
+addEventListener('scroll',function(){var h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';nv.classList.toggle('s',h.scrollTop>20)},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-n]').forEach(count);io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+function count(e){var n=+e.dataset.n,s=null;function f(t){s=s||t;var p=Math.min((t-s)/1400,1);e.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString('en-IN')+(n==1200?'+':'');if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+var r=document.querySelectorAll('#rev blockquote'),ri=0;setInterval(function(){r[ri].classList.remove('on');ri=(ri+1)%r.length;r[ri].classList.add('on')},4500);
+var cw=document.querySelector('.cw'),hh=document.querySelector('.hero');
+hh.addEventListener('pointermove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;cw.style.transform='perspective(900px) rotateY('+x*16+'deg) rotateX('+(-y*12)+'deg)'});
+hh.addEventListener('pointerleave',function(){cw.style.transform=''});
+</script>
+</body>
+</html>
